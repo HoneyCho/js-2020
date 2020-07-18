@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=h1, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 80%;
+            background-color: azure;
+
+        }
+
+        .div1 {
+
+            float: left;
+            width: 40%;
+
+            /* display: inline-block; */
+        }
+
+        .form1 {
+            border: 1px solid black;
+
+        }
+
+        .form2 {
+            border: 1px solid black;
+        }
+
+        .div2 {
+            float: left;
+            width: 60%;
+            border: 1px solid black;
+
+            /* display: inline-block; */
+        }
+    </style>
+
+</head>
+
+<body>
+    <h4>Budget App</h4>
+    <div class="div1">
+        <form class="form1">
+            <div class="budgetform">
+                <label for="budgetinput"> Please enter your budget.</label><br>
+                <input type="text" id="budget"><br>
+                <button id="budgetbtn">Submit</button>
+            </div>
+        </form>
+        <form class="form2">
+            <div class="expense">
+                <label for="expname"> Please enter your expense </label><br>
+                <input type="text" id="expname"><br>
+
+                <label for="amount">Please enter your amount</label><br>
+                <input type="text" id="expense"><br>
+                <button id="expbtn">Add Expense</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="div2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> BUDGET</th>
+                    <th>EXPENSE</th>
+                    <th>BALANCE</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <td><i class="fa fa-money"> </td>
+                    <td><i class="fa fa-credit-card"></td>
+                    <td><i class="fa fa-dollar"></td>
+                </tr>
+                <thead>
+                    <tr>
+                        <th> EXPENSE TITLE</th>
+                        <th>EXPENSE VALUE</th>
+
+                    </tr>
+
+                </thead>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script>
+        var obj = {};
+        var totalbudget = 0;
+        $("document").ready(function () {
+            var budget = $("#budget");
+            var expname = $("#expname");
+            var exp = $("#exp");
+            var amount = 0;
+            $("#expbtn").click(function () {
+
+                expname = expname.val();
+                exp = exp.val();
+                var explist = {
+                    name: expname,
+                    exp: exp
+                }
+obj.push(explist);
+
+            });
+
+
+            $("budgetbtn").click(function () {
+                budget = budget.val();
+
+            })
+
+        });
+
+    </script>
+</body>
+
+</html>

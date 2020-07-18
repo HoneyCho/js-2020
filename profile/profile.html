@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .leftcolumn {
+            width: 20%;
+            float: left;
+        }
+
+        .rightcolumn {
+            width: 80%;
+            float: left;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .card {
+            margin: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+            padding: 10px;
+            cursor: pointer;
+
+        }
+
+        .img {
+            /* border-radius: 50%; */
+            overflow: hidden;
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            margin: 16px 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 10px;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111;
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="leftcolumn">
+            <div class="card">
+
+
+                <div class="img">
+            
+                     <img src="img1.jpg"> 
+                    <!-- <span style="background-image:url(img1.jpg);"></span> -->
+                </div>
+
+                <div class="name">Honey Cho</div>
+                <div class="info">Web Designer</div>
+
+
+            </div>
+            <div class="card">
+
+
+<div class="img">
+    <div style="background-image: url(img3.jpg);"></div>
+    <!-- <img src="img3.jpg"> -->
+    <!-- <span style="background-image:url(img1.jpg);"></span> -->
+</div>
+
+<div class="name">Honey Cho</div>
+<div class="info">Web Designer</div>
+
+
+</div>
+        </div>
+        <div class="rightcolumn">
+            <div class="topnav">
+                <ul>
+                    <li><a class="active" href="#home">Home</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <div class="card">
+      <h2>Hello</h2>
+      <h5>Title description, Dec 7, 2017</h5>
+      <div class="fakeimg" style="height:200px;">Image</div>
+      
+    </div>
+    <div class="card">
+      <h2>About Me</h2>
+      <h5>Title description, Dec 7, 2017</h5>
+      <div class="fakeimg" style="height:200px;">Image</div>
+      
+    </div>
+        </div>
+    </div>
+</body>
+
+</html>

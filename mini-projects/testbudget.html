@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Calculation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <style>
+        body {
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        #content {
+            border: 0px solid gray;
+            width: 80%;
+             box-shadow: paleturquoise(32, 125, 156);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .row {
+            display: grid;
+            grid-gap: 10px;
+            grid-template-columns: auto auto auto auto auto;
+            grid-row: auto auto;
+        }
+
+        .first {
+            grid-column: 1/3;
+            border: 1px solid green;
+            padding: 10px;
+            border-radius: 6px;
+
+        }
+
+        .second {
+            grid-column: 1/3;
+            border: 1px solid red;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        input {
+            border-radius: 5px;
+            padding: 5px;
+            border: 0px;
+        }
+
+        button {
+            border-radius: 5px;
+            padding: 8px;
+            background-color: gray;
+        }
+
+        .labels {
+            text-align: center;
+        }
+
+        #display {
+            grid-column: 3/6;
+            text-align: center;
+            /* margin-left: 3%; */
+        }
+
+        th,
+        td {
+            margin: 20px;
+            text-align: center;
+            padding: 1px 50px 1px 50px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <div>
+            <h1>BUDGET APP</h1>
+        </div>
+        <div class="row">
+            <div class="first">
+                <label>Please Enter Your Budget</label> <br> <br>
+                <input type="text" name="" id="inputBudget"> <br> <br>
+                <button onclick="getBudget();">Calculate</button>
+            </div>
+
+            <div class="labels">
+                <h4>BUDGET</h4>
+                <p><i class="fa fa-money" style="font-size:25px;color:seagreen"></i></p>
+                <p><i class="fa fa-dollar" style="font-size:25px;color:green"></i></p>
+                <label for="" id="bLabel" style="font-size:25px;color:green"></label>
+            </div>
+
+            <div class="labels">
+                <h4>EXPENSE</h4>
+                <p><i class="fa fa-credit-card" style="font-size:25px;color: seagreen;"></i></p>
+                <p><i class="fa fa-dollar" style="font-size:25px;color:red;"></i></p>
+                <label for="" id="expense" style="font-size:25px;color:red"></label>
+            </div>
+            <div class="labels">
+                <h4>BALANCE</h4>
+                <p><i class="fa fa-dollar" style="font-size:25px;color:green"></i></p>
+                <p><i class="fa fa-dollar" style="font-size:25px;color:green;"></i></p>
+                <label for="" id="balance" style="font-size:25px;color:green;"></label>
+            </div>
+
+
+            <div class="second">
+                <label for="">Please Enter Your Expense</label> <br> <br>
+                <input type="text" name="" id="inputExpense"> <br> <br>
+                <label for="">Please Enter Expense Amount</label><br> <br>
+                <input type="text" name="" id="inputEAmount"> <br> <br>
+                <button onclick="getAddExpense();">Add Expense</button>
+            </div>
+            <div id="display">
+                <table id="disp">
+                    <tr>
+                        <th>Expense Title</th>
+                        <th>Expense Value</th>
+                        <th>&nbsp;&nbsp;</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        var totalBudget = 0;
+        function getBudget() {
+            var budget = $("#inputBudget").val() || 0;
+            totalBudget += parseInt(budget);
+            $("#bLabel").text(totalBudget);
+            getBalance();
+        }
+
+        var n = 0;
+        var totalExpense = 0;
+
+        var expenseList = [], iconList = [];
+
+        function getAddExpense() {
+            var exName = $("#inputExpense").val();
+            var exAmt = $("#inputEAmount").val() || 0;
+
+            var ex = { title: exName, amt: exAmt };
+            expenseList.push(ex);
+
+            var icon = { edit: "<i class='fa fa-edit' style='font-size:20px;'></i>", delete: "<i class='fa fa-trash' style='font-size:20px'></i>" };
+            iconList.push(icon);
+
+            var str = "";
+            totalExpense = 0;
+
+            expenseList.forEach(function (value, key) {
+                totalExpense += parseInt(value.amt);
+                str = "<tr><td>" + value.title + "</td><td>" + value.amt + "</td><td>" + iconList[key].edit + "&nbsp;" + iconList[key].delete + "</td></tr>";
+
+            });
+            $("#disp").append(str);
+            $("#expense").text(totalExpense);
+            getBalance();
+        }
+
+        function getBalance() {
+            //to get balance
+            $("#balance").text(parseInt(totalBudget) - parseInt(totalExpense));
+        }
+
+    </script>
+</body>
+
+</html>

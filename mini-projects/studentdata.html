@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student data</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <style>
+        .hide {
+            display: none;
+        }
+
+        .table {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 50%;
+            float: right;
+            margin-right: 60px;
+
+        }
+
+        .table td,
+        .table th {
+            border: 1px solid #2f2929;
+            padding: 8px;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #717471;
+            color: white;
+            text-align: center;
+
+        }
+
+        .formstyle {
+            float: left;
+            width: 40%;
+            box-sizing: border-box;
+            border: 1px solid black;
+            padding: 0 16px;
+            background-color: #c7c7c7;
+
+        }
+
+        tbody {
+            background-color: #f1f1f1;
+            border: 1px solid #eee;
+        }
+
+        input[type=text] {
+            width: 80%;
+            padding: 4px;
+            margin: 5px;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        input[type=checkbox],
+        input[type=radio],
+        select,
+        textarea {
+
+            /* padding: 5px; */
+            margin: 5px 0;
+
+        }
+         h4{
+            margin-bottom: -20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="formstyle">
+        <h2><b>Student Registration Form</b></h2>
+        <form onsubmit="event.preventDefault();addData()" id="studentForm">
+            <input type="text" placeholder="Enter name" name="name"><br>
+
+
+            <input type="text" placeholder="Phone Number" name="phno"><br>
+            <input type="text" placeholder="Email" name="email"><br>
+            <label for="address"><b>Address</b></label>
+            <br>
+            <textarea name="address" cols="30" rows="3"></textarea><br>
+            <b> Gander:</b>
+            <input type="radio" name="gander" value="male" id="male">
+            <label for="male">Male</label>
+            <input type="radio" name="gander" value="female" id="female">
+            <label for="female">Female</label>
+            <br>
+
+            <b>Year</b>
+            <div class="year">
+                <select name="year" onchange="onchangeYear(event)">
+
+                    <option value="0">Select Year</option>
+                    <option value="1"> First Year</option>
+                    <option value="2"> Second Year</option>
+                    <option value="3"> Third Year</option>
+
+                </select>
+            </div>
+           
+            <div id="result">
+
+            </div>
+            <p style="text-align: center;"><button class="w3-button w3-black w3-round-large">Submit</button></p>
+
+        </form>
+    </div>
+    <div class="hide" id="1">
+        <h4>Text Book For First Year </h4>
+        
+        <br>
+        <input type="checkbox" name="textbook" value="101" id="book1">
+        <label for="book1">101</label>
+        <input type="checkbox" name="textbook" value="102" id="book2">
+        <label for="book2">102</label>
+        <input type="checkbox" name="textbook" value="103" id="book3">
+        <label for="book3">103</label>
+        <input type="checkbox" name="textbook" value="104" id="book4">
+        <label for="book4">104</label><br>
+    </div>
+
+    <div class="hide" id="2">
+        <h4>Text Book For Second Year</h4>
+        <br>
+        <input type="checkbox" name="textbook" value="201" id="book1">
+        <label for="book1">201</label>
+        <input type="checkbox" name="textbook" value="202" id="book2">
+        <label for="book2">202</label>
+        <input type="checkbox" name="textbook" value="203" id="book3">
+        <label for="book3">203</label>
+        <input type="checkbox" name="textbook" value="204" id="book4">
+        <label for="book4">204</label><br>
+    </div>
+    <div class="hide" id="3">
+        <h4>Text Book For Third Year</h4>
+        <br>
+        <input type="checkbox" name="textbook" value="301" id="book1">
+        <label for="book1">301</label>
+        <input type="checkbox" name="textbook" value="302" id="book2">
+        <label for="book2">302</label>
+        <input type="checkbox" name="textbook" value="303" id="book3">
+        <label for="book3">303</label>
+        <input type="checkbox" name="textbook" value="304" id="book4">
+        <label for="book4">304</label><br>
+    </div>
+    
+
+    <table border="1" class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone number</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Year</th>
+                <th>Gander</th>
+                <th>Textbook</th>
+            </tr>
+        </thead>
+        <tbody id="t">
+
+        </tbody>
+    </table>
+
+    <script>
+        var studentForm = document.getElementById("studentForm");
+        var t = document.getElementById("t");
+        var res = document.getElementById("result");
+
+        function addData() {
+            var data = new FormData(studentForm); //create obj
+            var studentdata = {
+                name: data.get("name"),
+                phno: data.get("phno"),
+                email: data.get("email"),
+                address: data.get("address"),
+                year: data.get("year"),
+                gander: data.get("gander"),
+                book: data.getAll("textbook"),
+            }
+            console.log(studentdata);
+
+            var row = t.insertRow(t.rows.lenght);
+            row.insertCell(0).innerHTML = studentdata.name;
+            row.insertCell(1).innerHTML = studentdata.phno;
+            row.insertCell(2).innerHTML = studentdata.email;
+            row.insertCell(3).innerHTML = studentdata.address;
+            row.insertCell(4).innerHTML = studentdata.year == 1 ? "First Year" : "Second Year";
+            row.insertCell(5).innerHTML = studentdata.gander;
+            row.insertCell(6).innerHTML = studentdata.book;
+
+
+        }
+
+
+        function onchangeYear(e) {
+            var selectedyear = e.target.value; // first or second year
+            res.innerHTML = document.getElementById(selectedyear).innerHTML;
+        }
+
+    </script>
+</body>
+
+</html>

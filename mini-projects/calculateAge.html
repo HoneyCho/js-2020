@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <label>
+            Enter your birthday:
+            <input type="date" name="bday" id="bd" onchange="onchangeDate()">
+        </label>
+<h2 id="age"> Your age is :</h2>
+
+    </form>
+    <h1>Are You About 18?</h1>
+    <h3 id="ans">-</h3>
+    <script>
+        var input = document.getElementById("bd");
+        var ans = document.getElementById("ans");
+        function onchangeDate() {
+            var value = input.value;
+
+            var arr = value.split('-');
+            var y = parseInt(arr[0]);
+            var m = parseInt(arr[1]);
+            var d = parseInt(arr[2]);
+            var date = new Date(y, m, d);
+            var currentDate = new Date();
+            var difftime = (currentDate - date);
+            var diffYear = difftime / (1000 * 60 * 60 * 24 * 365);
+            diffYear = Math.abs(diffYear);
+            diffYear = Math.floor(diffYear);
+            console.log(diffYear);
+            age.innerHTML+=diffYear;
+            
+            ans.innerHTML= diffYear >= 18 ? "Yes" : "No";
+}
+    </script>
+</body>
+
+</html>

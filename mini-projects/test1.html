@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#btn1").click(function () {
+$("#test1").text("helo world");
+            });
+            $("#btn2").click(function () {
+$("#test2").html("<b> hellow world</b>");
+            });
+            $("#btn3").click(function () {
+$("#test3").val("hello world");
+            });
+
+        });
+    </script>
+    
+</head>
+
+<body>
+    <p id="test1"> test 1</p>
+    <p id="test2">test 2 </p><br>
+    <input type="text" id="test3" value="hello"><br>
+    <button id="btn1">set text</button>
+    <button id="btn2">set html</button>
+    <button id="btn3">set value</button>
+
+
+</body>
+
+</html>

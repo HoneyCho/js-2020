@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .div1 {
+            float: left;
+            width: 40%;
+            box-sizing: border-box;
+        }
+
+        .form1 {
+            border: 1px solid green;
+            padding: 20px;
+
+            background-color: #f7f3f3;
+            margin: 16px;
+
+
+        }
+
+        .form2 {
+
+            background-color: #f7f3f3;
+            padding: 20px;
+            border: 1px solid red;
+            margin: 16px;
+        }
+
+        .div2 {
+            box-sizing: border-box;
+            float: left;
+            width: 50%;
+            margin: 16px;
+  }
+
+        .row1 {
+            text-align: center;
+            display: flex;
+
+            margin-top: -30px;
+            margin-left: 90px;
+            }
+
+        .result1,
+        .result2,
+        .result3 {
+            padding: 0 40px;
+
+        }
+
+        .row2 th {
+            padding-top: 16px;
+            padding-left: 64px;
+            font-size: 19px;
+            text-align: center;
+
+        }
+
+        .result #exptable {
+            font-size: 30px;
+
+        }
+
+        .result #exptable tr td {
+            padding: 5px 36px;
+            text-align: center;
+        }
+
+        .fa-trash:before {
+
+            color: red;
+        }
+
+        .fa-edit:before {
+            color: blue;
+        }
+
+        #budgetbtn,
+        #expbtn {
+            background-color: #d6d1d1;
+            margin-top: 20px;
+        }
+
+        input[type=text] {
+            margin-top: 12px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <div class="title">
+            <h3 style="margin-left: 16px;"> BUDGET APP</h3>
+        </div>
+        <div class="div1">
+            <div class="form1">
+                <label for="budgetinput"> Please enter your budget.</label><br>
+                <input type="text" id="budget"><br>
+                <button id="budgetbtn">Submit</button>
+
+            </div>
+            <div class="form2">
+                <label for="expname"> Please enter your expense </label><br>
+                <input type="text" id="expname"><br>
+
+                <label for="amount">Please enter your amount</label><br>
+                <input type="text" id="expense"><br>
+                <button id="expbtn">Add Expense</button>
+            </div>
+        </div>
+
+        <div class="div2">
+            <div class="row1">
+                <div class="result1">
+                    <h3>BUDGET</h3>
+                    <p><i class="fa fa-money" style="font-size:40px;color:rgb(14, 15, 124)"></i></p>
+                    <p><i class="fa fa-dollar" style="font-size:30px;color:green"> <span id="budgetspan">0</span></i>
+                    </p>
+
+                </div>
+                <div class="result2">
+                    <h3>EXPENSE</h3>
+                    <p><i class="fa fa-credit-card" style="font-size:40px;color:rgb(14, 15, 124);"></i></p>
+                    <p><i class="fa fa-dollar" style="font-size:30px;color:red;"><span id="expspan">0</span></i></p>
+
+                </div>
+                <div class="result3">
+                    <h3>BALANCE</h3>
+                    <p><i class="fa fa-dollar" style="font-size:40px;color:rgb(14, 15, 124)"></i></p>
+                    <p><i class="fa fa-dollar" style="font-size:30px;color:green;"><span id="balancespan">0</span></i>
+                    </p>
+
+                </div>
+            </div>
+            <div class="row2">
+
+                <table class="result">
+                    <thead>
+                        <tr>
+                            <th>EXPENSE TITLE</th>
+                            <th>EXPENSE VALUE</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="exptable">
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#budgetbtn").click(function () {
+                var budget = parseInt($("#budget").val());
+                var totalb = parseInt($("#budgetspan").text());
+                totalb += budget;
+                $("#budgetspan").text(totalb);
+
+                var totalbal = parseInt($("#balancespan").text());
+                totalbal += totalb;
+                $("#balancespan").text(totalbal);
+            });
+            $("#expbtn").click(function () {
+
+                var expname = $("#expname").val();
+                // $("#expname").text(expname);
+                var exp = parseInt($("#expense").val());
+                var newexp = parseInt($("#expspan").text());
+                newexp += exp;
+
+                $("#expspan").text(newexp);
+                var balance = parseInt($("#balancespan").text());
+                balance -= newexp;
+
+                $("#balancespan").text(balance);
+                $("#exptable").append(
+                    "<tr>" +
+                    "<td>" + expname + "</td>" +
+                    "<td>" + exp + "</td>" +
+                    "<td><button type='button' id='editBtn'><i class='fas fa-edit' id='edit' ></i></button><button type='button' id='delBtn'><i class='fas fa-trash' id='delete'></i></button></td></tr>"
+
+                );
+
+            });
+        });
+
+    </script>
+</body>
+
+</html>

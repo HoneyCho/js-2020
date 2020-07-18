@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mylist {
+            list-style: none;
+            padding: 0;
+        }
+
+        #mylist li span {
+            background-color: #eee;
+            /* height: auto; */
+            padding: 5px 16px;
+            width: 300px;
+            border: 1px solid #968181;
+            margin-bottom: 3px;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        #mylist li {
+            margin-left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myDiv">
+        <h2>Task List</h2>
+        <input type="text" id="task" placeholder="New Title..." style="margin-right: 10px;">
+        <button onclick="addTask()" class="addTask">Add</button>
+        <ul id="mylist">
+        </ul>
+    </div>
+    <script>
+        var taskinput = document.getElementById("task");
+        var tasklist = [];
+        var mylist = document.getElementById("mylist");
+        function addTask() {
+            var inputvalue = taskinput.value;
+            // tasklist.push(input);
+            // console.log(tasklist);
+            var btn = document.createElement("button");
+            btn.innerHTML = "remove";
+            var span = document.createElement("span");
+            span.innerHTML = inputvalue;
+            var li = document.createElement("li");
+            li.appendChild(span);
+            li.appendChild(btn);
+            mylist.appendChild(li);
+            btn.addEventListener("click", function () {
+                li.remove();
+            })
+        }
+    </script>
+</body>
+
+</html>

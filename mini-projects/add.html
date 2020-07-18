@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+$("#btnadd").click(function(){
+var n1=parseInt($("#num1").val());
+var n2=parseInt($("#num2").val());
+var result=n1+n2;
+
+$("#res").html("the result is <b>"+result+"</b>");
+});
+        });
+    </script>
+</head>
+<body>
+  <input type="text" placeholder="Enter first number" id="num1">  
+  <input type="text" placeholder="Enter second number" id="num2">
+  <button id="btnadd">Add</button>
+  <p id="res"></p>
+</body>
+</html>

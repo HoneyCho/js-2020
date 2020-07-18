@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>Admin</title>
+  <style>
+    body{
+     
+    }
+    .menuform{
+      box-sizing: border-box;
+      border:1px solid #333;
+      float:left;
+      width:50%;
+      margin-left: 30px;
+      background-image:url("blacckimg.jpeg");
+    }
+  </style>
+</head>
+
+<body>
+  <div class="addfood"><span>Add Food</span></div>
+  <div class="menuform">
+    <form id="form" action="#" onsubmit="addMenu(event)">
+      <input type="text" name="name" placeholder="Name">
+      <br><br>
+      <select name="category">
+        <option value="coffee" selected>Coffee</option>
+        <option value="pizza">Pizza</option>
+      </select>
+      <br><br>
+      <textarea name="detail" cols="30" rows="3"></textarea>
+      <br><br>
+      <input type="number" step="0.1" name="price" placeholder="Price">
+      <br><br>
+      <button>Submit</button>
+    </form>
+</div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+      </tbody>
+    </table>
+    <script>
+
+      function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function addMenu(e) {
+        e.preventDefault();
+        var fd = new FormData(document.getElementById('form'));
+        var data = {
+          name: fd.get('name'),
+          detail: fd.get('detail'),
+          category: fd.get('category'),
+          price: parseFloat(fd.get('price')),
+        }
+        addMenuToLocalStorage(data);
+        refreshTable();
+      }
+
+      function addMenuToLocalStorage(m) {
+        var menuLocaStorage = getMenuFromLocalStorage();
+        var menuName = m.name;
+        var categoryName = m.category;
+        var storedMenu = menuLocaStorage.find(function (i) {
+          return i.name == menuName & i.category == categoryName;
+        });
+
+        if (storedMenu) {
+          alert('Menu is already exists!!');
+          return;
+        }
+
+        var id = getRandomInt(1000000, 9999999);
+
+        storedMenu = {
+          id: id,
+          name: m.name,
+          category: m.category,
+          price: m.price,
+          detail: m.detail,
+        }
+
+        menuLocaStorage.push(storedMenu);
+        localStorage.setItem('menus', JSON.stringify(menuLocaStorage));
+
+        alert('Added : ' + JSON.stringify(menuLocaStorage));
+      }
+
+      function getMenuFromLocalStorage() {
+        var menuLocaStorage = localStorage.getItem('menus');
+        if (!menuLocaStorage) {
+          return [];
+        }
+
+        return JSON.parse(menuLocaStorage);
+      }
+
+      function onEditMenu(j) {
+        var menus = getMenuFromLocalStorage();
+        for (var i = 0; i < menus.length; i++) {
+          if (i == j) {
+            var item = menus[i];
+          }
+        }
+      }
+
+      function onDeleteMenu(j) {
+        var menus = getMenuFromLocalStorage();
+        menus.splice(j, 1); // remove from array
+        localStorage.setItem('menus', JSON.stringify(menus));
+        refreshTable();
+      }
+
+      function refreshTable() {
+        var tbody = document.getElementById('tbody');
+        tbody.innerHTML = '';
+        var menuItems = getMenuFromLocalStorage();
+
+        for (var i = 0; i < menuItems.length; i++) {
+          var item = menuItems[i];
+          var editButton = document.createElement('button');
+          editButton.innerHTML = ' ✎ Edit';
+          (function (i) {
+            editButton.onclick = function () {
+              onEditMenu(i);
+            }
+          })(i);
+
+          var deleteButton = document.createElement('button');
+          deleteButton.innerHTML = '🗑 Delete';
+          (function (i) {
+            deleteButton.onclick = function () {
+              onDeleteMenu(i);
+            }
+          })(i);
+
+
+          console.log(item.id);
+          var row = tbody.insertRow(tbody.rows.length);
+          row.insertCell(0).innerHTML = item.id;
+          row.insertCell(1).innerHTML = item.name;
+          row.insertCell(2).innerHTML = item.category;
+          row.insertCell(3).innerHTML = item.price;
+
+          var actions = row.insertCell(4);
+          actions.append(editButton);
+          actions.append(deleteButton);
+        }
+      }
+
+      refreshTable();
+    </script>
+</body>
+
+</html>

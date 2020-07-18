@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="num1" placeholder="Ender first number">
+    <input type="text" id="num2" placeholder="Ender first number">
+    <button id="btn" onclick="result()">Show result</button>
+    <div>
+        <p>The answer divided by 2 & 5 : <span id="ans"> </span> </p>
+    </div>
+
+    <script>
+        var num1 = document.getElementById("num1");
+        var num2 = document.getElementById("num2");
+        var ans = document.getElementById("ans");
+        function result() {
+            num1 = num1.value;
+            num2 = num2.value;
+            num1 = parseInt(num1);
+            num2 = parseInt(num2);
+
+            for (let i = num1 + 1; i < num2 + 1; i++) {
+                if (i % 2 == 0 && i % 5 == 0) {
+
+                    ans.innerHTML += i + ",";
+                }
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>

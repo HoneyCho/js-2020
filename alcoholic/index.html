@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" type="text/css" href="slick/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="slick/slick/slick-theme.css" />
+
+    <style>
+        .clearfix {
+            overflow: auto;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        body{
+            background-color:#e6e6e6;
+        }
+
+        .search-container button {
+            padding: 6px 10px;
+            margin-top: 8px;
+            margin-right: 16px;
+            background: #ddd;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .float-left {
+            float: left;
+
+        }
+
+        .float-right {
+            float: right;
+        }
+
+        .d-inline {
+            display: inline;
+        }
+
+        .col-4 {
+            width: 33.333%;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+.nav{
+    margin-bottom:16px;
+}
+
+        .nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .nav li {
+            float: left;
+        }
+
+        .nav li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .nav li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        .slide-wrapper {
+            max-width: 80%;
+            margin: 0 auto;
+        }
+
+        .slide img {
+            /* width: 100%; */
+            width: 1050px;
+            height: 330px;
+            margin: 0 auto;
+        }
+
+        .category {
+            width: 80%;
+            margin: 0 auto;
+
+        }
+
+        .category .row>div {
+            float: left;
+            width: 25%;
+            /* position: relative; */
+        }
+
+        .category div span {
+            /* position: absolute; */
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: black;
+            color: #fff;
+            display: block;
+            margin-top: -5px;
+
+        }
+
+        .category div>img {
+            width: 100%;
+        }
+
+        .category row {
+            margin: 0 -16px;
+
+        }
+
+        .category .col div {
+            padding: 16px;
+        }
+
+        .tab {
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        .tab ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .tab li {
+            float: left;
+        }
+
+        .tab li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .tab li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        .cards {
+            margin: 0 auto;
+            width: 80%;
+
+        }
+
+        .cards img {
+            width: 40%;
+            margin: 0 auto;
+            background-color: white;
+
+        }
+
+        .card {
+
+            position: relative;
+            float: left;
+            border: 1px solid black;
+            margin-top: 20px;
+            background-color: white;
+        }
+
+        .cards .cards-col {
+            width: 16.66%;
+            float: left;
+            padding: 0 8px 0 8px;
+            box-sizing: border-box;
+
+        }
+
+        .cards .cards-row {
+            margin: 0 -8px;
+        }
+
+        .cards .discount {
+            position: absolute;
+
+            top: 0;
+            left: 2px;
+            color: red;
+            display: block;
+        }
+
+        .cards .card-image {
+            text-align: center;
+        }
+
+        .cards .sale {
+            position: absolute;
+            top: 10px;
+            right: 5px;
+
+            background-color: red;
+            color: #fff;
+        }
+
+        .cards .new {
+            position: absolute;
+            top: 34px;
+            right: 3px;
+            background-color: gray;
+            color: black;
+        }
+
+        .cards .new-price {
+
+            color: black;
+            display: block;
+            font-weight: bold;
+            font-size: x-large;
+            float: left;
+
+
+        }
+
+        .cards .old-price {
+            position: relative;
+            top: 6px;
+            color: red;
+            display: block;
+            text-decoration: line-through;
+        }
+
+
+
+        .cards .name {
+            text-align: left;
+            color: #888080;
+        }
+
+        .cards .add-cart {
+
+            color: #fff;
+            background: red;
+            padding: 10px 0 10px 0;
+            display: block;
+            text-align: center;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .fb-wrapper .fb-link {
+            display: inline-block;
+            margin: 16px 16px;
+            margin-bottom: 70px;
+            border: 1px solid #ded1d1;
+            box-shadow: 0 0px 8px 0px #777;
+        }
+
+        .fb-wrapper {
+            display: inline-block;
+
+
+        }
+
+
+        .fb-wrapper .fb-page {
+            margin: 16px 16px;
+
+        }
+
+        .fb-wrapper .follow {
+            margin: 16px 18px 0px 16px;
+            color: #777;
+        }
+
+        .footer {
+            margin: 0 auto;
+        }
+.footer .contant-name span{
+    padding:16px;
+}
+        .footer>div {
+            float: left;
+            width: 33.33%;
+            border: 1px solid #eee;
+            box-sizing: border-box;
+            background-color: white;
+        }
+
+        .contant .contant-img {
+            width: 20%;
+            float: left;
+            text-align: center;
+            padding-top: 24px;
+
+        }
+
+        .contant .contant-name {
+            width: 80%;
+            float: left;
+        }
+
+        .title {
+            display: block;
+            text-align: center;
+        }
+.header{
+    margin-top:16px;
+    background-color: white;
+  
+}
+    
+    </style>
+
+</head>
+
+<body>
+    <header class="header clearfix">
+
+        <div class="title float-left d-inline col-4 text-center">
+            <span>Alcoholic</span><br>
+
+            <span>BEVERAGE STORE</span>
+        </div>
+
+
+        <div class="search-container float-left d-inline col-4 text-center">
+            <form action="/action_page.php">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+
+        <div class="contact float-right d-inline col-4 text-center">
+            <b>
+                <h2> Call us now: 1 (234) 456 789</h2>
+            </b>
+        </div>
+    </header>
+
+    <div class="nav">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#contact">Contact</a></li>
+
+        </ul>
+    </div>
+    <div class="slide-wrapper">
+        <div class="slide">
+            <div><img src="img1.jpeg"></div>
+            <div><img src="img2.jpeg"></div>
+            <div><img src="img3.jpeg"></div>
+        </div>
+
+    </div>
+    <div class="category clearfix">
+        <div class="row">
+            <div class="col">
+                <div>
+                    <img src="img1.jpeg">
+                    <span>&nbsp; WHISKEY</span>
+                </div>
+            </div>
+            <div class="col">
+
+                <div>
+                    <img src="img2.jpeg">
+                    <span> &nbsp;TEQUILA</span>
+                </div>
+            </div>
+            <div class="col">
+                <div> <img src="img3.jpeg">
+                    <span>&nbsp; VODKA</span>
+                </div>
+            </div>
+            <div class="col">
+                <div> <img src="img3.jpeg">
+                    <span> &nbsp;WINE</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="tab">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#contact">Contact</a></li>
+
+        </ul>
+    </div>
+
+    <div class="cards clearfix">
+        <div class="cards-row">
+            <div class="cards-col">
+                <div class="card">
+                    <span class="discount">-50%</span>
+                    <span class="sale">Sale</span>
+                    <span class="new"> New</span>
+                    <div class="card-image">
+                        <img src="wine.png">
+                    </div>
+                    <div class="pricing clearfix">
+                        <span class="new-price"> $60.33</span>
+                        <span class="old-price"> $90.88</span>
+                    </div>
+                    <span class="name">Beefeater Gin</span>
+                    <span class="add-cart">Add to cart</span>
+                </div>
+            </div>
+
+            <div class="cards-col">
+                <div class="card">
+                    <span class="discount">-50%</span>
+                    <span class="sale">Sale</span>
+                    <span class="new"> New</span>
+                    <div class="card-image">
+                        <img src="wine.png">
+                    </div>
+                    <div class="pricing clearfix">
+                        <span class="new-price"> $60.33</span>
+                        <span class="old-price"> $90.88</span>
+                    </div>
+                    <span class="name">Beefeater Gin</span>
+                    <span class="add-cart">Add to cart</span>
+                </div>
+            </div>
+            <div class="cards-col">
+                <div class="card">
+                    <span class="discount">-50%</span>
+                    <span class="sale">Sale</span>
+                    <span class="new"> New</span>
+                    <div class="card-image">
+                        <img src="wine.png">
+                    </div>
+                    <div class="pricing clearfix">
+                        <span class="new-price"> $60.33</span>
+                        <span class="old-price"> $90.88</span>
+                    </div>
+                    <span class="name">Beefeater Gin</span>
+                    <span class="add-cart">Add to cart</span>
+                </div>
+            </div>
+            <div class="cards-col">
+                <div class="card">
+                    <span class="discount">-50%</span>
+                    <span class="sale">Sale</span>
+                    <span class="new"> New</span>
+                    <div class="card-image">
+                        <img src="wine.png">
+                    </div>
+                    <div class="pricing clearfix">
+                        <span class="new-price"> $60.33</span>
+                        <span class="old-price"> $90.88</span>
+                    </div>
+                    <span class="name">Beefeater Gin</span>
+                    <span class="add-cart">Add to cart</span>
+                </div>
+            </div>
+            <div class="cards-col">
+                <div class="card">
+                    <span class="discount">-50%</span>
+                    <span class="sale">Sale</span>
+                    <span class="new"> New</span>
+                    <div class="card-image">
+                        <img src="wine.png">
+                    </div>
+                    <div class="pricing clearfix">
+                        <span class="new-price"> $60.33</span>
+                        <span class="old-price"> $90.88</span>
+                    </div>
+                    <span class="name">Beefeater Gin</span>
+                    <span class="add-cart">Add to cart</span>
+                </div>
+            </div>
+            <div class="cards-col">
+                <div class="card">
+                    <span class="discount">-50%</span>
+                    <span class="sale">Sale</span>
+                    <span class="new"> New</span>
+                    <div class="card-image">
+                        <img src="wine.png">
+                    </div>
+                    <div class="pricing clearfix">
+                        <span class="new-price"> $60.33</span>
+                        <span class="old-price"> $90.88</span>
+                    </div>
+                    <span class="name">Beefeater Gin</span>
+                    <span class="add-cart">Add to cart</span>
+                </div>
+            </div>
+        </div>
+    
+            <div class="cards-row">
+                <div class="cards-col">
+                    <div class="card">
+                        <span class="discount">-50%</span>
+                        <span class="sale">Sale</span>
+                        <span class="new"> New</span>
+                        <div class="card-image">
+                            <img src="wine.png">
+                        </div>
+                        <div class="pricing clearfix">
+                            <span class="new-price"> $60.33</span>
+                            <span class="old-price"> $90.88</span>
+                        </div>
+                        <span class="name">Beefeater Gin</span>
+                        <span class="add-cart">Add to cart</span>
+                    </div>
+                </div>
+
+                <div class="cards-col">
+                    <div class="card">
+                        <span class="discount">-50%</span>
+                        <span class="sale">Sale</span>
+                        <span class="new"> New</span>
+                        <div class="card-image">
+                            <img src="wine.png">
+                        </div>
+                        <div class="pricing clearfix">
+                            <span class="new-price"> $60.33</span>
+                            <span class="old-price"> $90.88</span>
+                        </div>
+                        <span class="name">Beefeater Gin</span>
+                        <span class="add-cart">Add to cart</span>
+                    </div>
+                </div>
+                <div class="cards-col">
+                    <div class="card">
+                        <span class="discount">-50%</span>
+                        <span class="sale">Sale</span>
+                        <span class="new"> New</span>
+                        <div class="card-image">
+                            <img src="wine.png">
+                        </div>
+                        <div class="pricing clearfix">
+                            <span class="new-price"> $60.33</span>
+                            <span class="old-price"> $90.88</span>
+                        </div>
+                        <span class="name">Beefeater Gin</span>
+                        <span class="add-cart">Add to cart</span>
+                    </div>
+                </div>
+                <div class="cards-col">
+                    <div class="card">
+                        <span class="discount">-50%</span>
+                        <span class="sale">Sale</span>
+                        <span class="new"> New</span>
+                        <div class="card-image">
+                            <img src="wine.png">
+                        </div>
+                        <div class="pricing clearfix">
+                            <span class="new-price"> $60.33</span>
+                            <span class="old-price"> $90.88</span>
+                        </div>
+                        <span class="name">Beefeater Gin</span>
+                        <span class="add-cart">Add to cart</span>
+                    </div>
+                </div>
+                <div class="cards-col">
+                    <div class="card">
+                        <span class="discount">-50%</span>
+                        <span class="sale">Sale</span>
+                        <span class="new"> New</span>
+                        <div class="card-image">
+                            <img src="wine.png">
+                        </div>
+                        <div class="pricing clearfix">
+                            <span class="new-price"> $60.33</span>
+                            <span class="old-price"> $90.88</span>
+                        </div>
+                        <span class="name">Beefeater Gin</span>
+                        <span class="add-cart">Add to cart</span>
+                    </div>
+                </div>
+                <div class="cards-col">
+                    <div class="card">
+                        <span class="discount">-50%</span>
+                        <span class="sale">Sale</span>
+                        <span class="new"> New</span>
+                        <div class="card-image">
+                            <img src="wine.png">
+                        </div>
+                        <div class="pricing clearfix">
+                            <span class="new-price"> $60.33</span>
+                            <span class="old-price"> $90.88</span>
+                        </div>
+                        <span class="name">Beefeater Gin</span>
+                        <span class="add-cart">Add to cart</span>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+    <div class="clearfix" style="margin-top: 24px;"></div>
+
+    <div class="footer">
+        <div class="fb-wrapper">
+            <p class="follow"> Follow us on facebook </p>
+            <div class="fb-link">
+                <!-- <div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div> -->
+                <div class="fb-page" data-href="https://www.facebook.com/imdb" data-width="340" data-hide-cover="false"
+                    data-show-facepile="true"></div>
+
+                <!-- <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe> -->
+            </div>
+        </div>
+
+        <div class="contant clearfix">
+            <div>
+
+                <div class="contant-img">
+                    <img src="https://img.icons8.com/ios-glyphs/30/000000/suv-2.png" />
+                </div>
+
+                <div class="contant-name">
+                    <span>Delivery</span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum placeat impedit suscipit,
+                        doloremque
+                        laboriosam possimus quod eius, repellendus esse tenetur laborum velit aliquid hic adipisci!
+                        Quibusdam obcaecati voluptatem mollitia beatae.</p>
+                </div>
+
+
+            </div>
+
+            <div>
+                <div class="contant-img">
+                    <img src="https://img.icons8.com/ios-glyphs/30/000000/phone--v1.png" />
+                </div>
+                <div class="contant-name">
+                    <span>Contact</span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum placeat impedit suscipit,
+                        doloremque
+                        laboriosam possimus quod eius, repellendus esse tenetur laborum velit.</p>
+                </div>
+            </div>
+
+            <div>
+                <div class="contant-img">
+                    <img src="https://img.icons8.com/ios-glyphs/30/000000/e-learning.png" />
+                </div>
+                <div class="contant-name">
+                    <span>Address</span>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo iure quisquam accusantium deleniti
+                        illum eius, ducimus sint laudantium eligendi adipisci.</p>
+                </div>
+            </div>
+        </div>
+        <div class="custom">
+            <h2>Custom Blocl</h2>
+            <h4>Loream</h4>
+            <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur quod et amet! Eaque porro
+                quibusdam
+                voluptatem iste eligendi.</p>
+        </div>
+    </div>
+
+
+    </div>
+
+
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="slick/slick/slick.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.slide').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                fade: true,
+                cssEase: 'linear'
+            });
+        });
+
+    </script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/my_MM/sdk.js#xfbml=1&version=v7.0"
+        nonce="BTue0q5C"></script>
+</body>
+
+</html>
